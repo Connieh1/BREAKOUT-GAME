@@ -4,6 +4,8 @@ const rules = document.getElementById("rules");
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
+let score = 0;
+
 // Ball
 const ball = {
   x: canvas.width / 2,
@@ -46,6 +48,13 @@ function drawPaddle() {
 function draw() {
   drawBall();
   drawPaddle();
+  drawScore();
+}
+
+//Draw Score
+function drawScore() {
+  ctx.font = "20px Arial";
+  ctx.fillText(`Score: ${score}`, canvas.width - 100, 30);
 }
 
 draw();
