@@ -105,13 +105,22 @@ function moveBall() {
   ball.x += ball.dx;
   ball.y += ball.dy;
 
-  //Wall Collicsion (right/left)
+  //Wall Collision (right/left)
   if (ball.x + ball.size > canvas.width || ball.x - ball.size < 0) {
     ball.dx *= -1;
   }
   //Wall Collision (top/bottom)
   if (ball.y + ball.size > canvas.height || ball.y - ball.size < 0) {
     ball.dy *= -1;
+  }
+
+  // Paddle Collision
+  if (
+    ball.x - ball.size > paddle.x &&
+    ball.x + ball.size < paddle.x + paddle.w &&
+    ball.y + ball.size > paddle.y
+  ) {
+    ball.dy = -ball.speed;
   }
 }
 
