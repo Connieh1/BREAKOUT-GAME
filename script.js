@@ -128,15 +128,35 @@ function moveBall() {
     column.forEach((brick) => {
       if (brick.visible) {
         if (
-          ball.x - ball.size > brick.x &&
-          ball.x + ball.size < brick.x + brick.w &&
-          ball.y + ball.size > brick.y &&
-          ball.y - ball.size < brick.y + brick.h
+          ball.x - ball.size > brick.x && // left brick side check
+          ball.x + ball.size < brick.x + brick.w && //right brick side check
+          ball.y + ball.size > brick.y && //top brick side check
+          ball.y - ball.size < brick.y + brick.h //bottom brick side check
         ) {
           ball.dy *= -1;
           brick.visible = false;
+
+          increaseScore();
         }
       }
+    });
+  });
+}
+
+//Increase score
+function increaseScore() {
+  score++;
+
+  if (score % (brickRowCount * brickRowCount) === 0) {
+    showAllBricks();
+  }
+}
+
+//Make all bricks appear
+function showAllBricks() {
+  bricks.forEach((column) => {
+    column.forEach((brick) => {
+      brick.visible = true;
     });
   });
 }
